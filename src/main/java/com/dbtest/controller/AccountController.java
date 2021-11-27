@@ -20,7 +20,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/createAccount")
+    @PostMapping("/createAccount")
     public boolean createAccount(Account account) throws Exception {
         //Account a=new Account(account,name,password,1,false);
         account.setLv(1);account.setVip(false);

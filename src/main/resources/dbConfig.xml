@@ -19,7 +19,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="dbMappers/blogMapper.xml"/>
+        <mapper resource="dbMappers/accountMapper.xml"/>
+        <mapper resource="dbMappers/bulletScreenMapper.xml"/>
     </mappers>
 
 </configuration>
