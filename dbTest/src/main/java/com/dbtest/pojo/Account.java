@@ -11,7 +11,4 @@ public class Account {
     String password;
     Integer lv;//可删
     Boolean vip;//可删
-    public boolean isPass(String password){
-        return this.password.equals(password);
-    }
 }
