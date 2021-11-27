@@ -3,5 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dbtest.dao.AccountMappers">
+    <select id="selectByAccount" resultMap="accountResultMap">
+        select *from accountDb
+        where account=#{account}
+    </select>
+    <resultMap id="accountResultMap" type="com.dbtest.pojo.Account">
+        <result property="account" column="account"></result>
+        <result property="name" column="name"></result>
+        <result property="password" column="password"></result>
+        <result property="lv" column="lv"></result>
+        <result property="vip" column="vip"></result>
+    </resultMap>
+    <insert id="insertAccount">
+        insert into accountDb(account,name,password,lv,vip)
+        values #{a.getAccount(),a.getName(),a.getPassword(),a.getLv(),a.getVip()}
+    </insert>
+
 
 </mapper>
