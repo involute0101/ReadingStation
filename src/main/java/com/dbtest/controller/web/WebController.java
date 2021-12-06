@@ -23,7 +23,7 @@ public class WebController {
      */
     @GetMapping(value = "/login")
     public String login() {
-        return "student/login";
+        return "login";
     }
 
     /**
