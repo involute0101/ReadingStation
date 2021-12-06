@@ -6,29 +6,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@RestController("/Account")
+@Controller
+@RequestMapping(value ="/Account")
 public class AccountController {
     @Autowired
     private AccountService accountService;
-
     @PostMapping("/createAccount")
-    public boolean createAccount(Account account) throws Exception {
-        //Account a=new Account(account,name,password,1,false);
-        account.setLv(1);account.setVip(false);
+    @ResponseBody
+    public boolean createAccount(@RequestBody Account account) throws Exception {//测试通过
+        account.setLv(1);account.setVip(0);
+        if(accountService.isContained(account.getAccount()))
+            return false;//toDo:前端给点提示
         boolean result=accountService.insertAccount(account);
         return result;
     }
-
     @PostMapping("/assertAccount")
-    public boolean assertAccount(Account account) throws IOException {
+    @ResponseBody
+    public boolean assertAccount(@RequestBody Account account) throws IOException {//测试通过
         return accountService.isPass(account.getAccount(),account.getPassword());
     }
 }

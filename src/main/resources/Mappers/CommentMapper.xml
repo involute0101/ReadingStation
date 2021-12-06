@@ -9,10 +9,12 @@
         where id=#{id}
     </select>
     <resultMap id="commentResultMap" type="com.dbtest.entity.Comment">
-        <result property="id" column="id"></result>
         <result property="content" column="content"></result>
         <association property="sender" select="selectByAccount" column="account" fetchType="lazy"></association>
         <!--这里可能有问题-->
     </resultMap>
-
+    <insert id="insertComment" parameterType="com.dbtest.entity.Comment">
+        insert into commentdb(content,account,bookName,isDescription)
+        values (#{content},#{account},#{bookName},#{isDescription})
+    </insert>
 </mapper>

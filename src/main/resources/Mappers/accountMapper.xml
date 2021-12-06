@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dbtest.dao.AccountMappers">
     <select id="selectByAccount" resultMap="accountResultMap">
-        select *from accountDb
+        select *from accountdb
         where account=#{account}
     </select>
     <resultMap id="accountResultMap" type="com.dbtest.entity.Account">
@@ -15,8 +15,8 @@
         <result property="vip" column="vip"></result>
     </resultMap>
     <insert id="insertAccount" parameterType="com.dbtest.entity.Account">
-        insert into accountDb(account,name,password,lv,vip)
-        values (#{getAccount()},#{getName()},#{getPassword()},#{getLv()},#{getVip()})
+        insert into accountdb(account,name,password,lv,vip)
+        values (#{account},#{name},#{password},#{lv},#{vip})
     </insert>
 
 

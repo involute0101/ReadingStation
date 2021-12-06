@@ -10,5 +10,5 @@ public class Account {
     String name;
     String password;
     Integer lv;//可删
-    Boolean vip;//可删
+    Integer vip;//可删
 }

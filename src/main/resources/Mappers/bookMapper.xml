@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dbtest.dao.BookMappers">
     <select id="selectBookByName" resultMap="booktResultMap">
-        select *from bookDb
-                         left outer join accountDb on bookDb.uploader=accountDb.account
-                         left outer join commentDb on bookDb.uploader=commentDb.account
+        select *from bookdb
+                         left outer join accountdb on bookdb.account=accountdb.account
+                         left outer join commentdb on bookdb.account=commentdb.account
         where bookName=#{bookName}
     </select>
     <resultMap id="booktResultMap" type="com.dbtest.entity.Book">
@@ -15,8 +15,8 @@
         <result property="uploadTime" column="uploadTime" javaType="DATE"></result>
         <result property="changeTime" column="changeTime" javaType="DATE"></result>
         <result property="url" column="url"></result>
-        <association property="uploader" select="selectByAccount" column="uploader" fetchType="lazy"></association>
-        <association property="comments" select="selectComment" column="uploader" fetchType="lazy"></association>
+        <association property="uploader" select="selectByAccount" column="account" fetchType="lazy"></association>
+        <association property="comments" select="selectComment" column="account" fetchType="lazy"></association>
         <!--这里可能有问题-->
     </resultMap>
 

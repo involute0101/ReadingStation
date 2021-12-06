@@ -3,16 +3,18 @@ package com.dbtest.controller;
 import com.dbtest.entity.Book;
 import com.dbtest.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/Book")
+@Controller
+@RequestMapping("/Book")
 public class BookController {
     @Autowired
     BookService bookService;
-    @GetMapping("/getByName")
-    public Book getBookByName(String bookName){
+    @PostMapping("/getByName")
+    @ResponseBody
+    public Book getBookByName(@RequestBody String bookName){
+        System.out.println(bookService.getBook(bookName));
         return bookService.getBook(bookName);
     }
 
