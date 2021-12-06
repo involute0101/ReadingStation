@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbtest.dao.BookMappers">
+    <select id="selectBookByName" resultMap="booktResultMap">
+        select *from bookDb
+                         left outer join accountDb on bookDb.uploader=accountDb.account
+                         left outer join commentDb on bookDb.uploader=commentDb.account
+        where bookName=#{bookName}
+    </select>
+    <resultMap id="booktResultMap" type="com.dbtest.entity.Book">
+        <result property="bookName" column="bookName"></result>
+        <result property="id" column="id"></result>
+        <result property="uploadTime" column="uploadTime" javaType="DATE"></result>
+        <result property="changeTime" column="changeTime" javaType="DATE"></result>
+        <result property="url" column="url"></result>
+        <association property="uploader" select="selectByAccount" column="uploader" fetchType="lazy"></association>
+        <association property="comments" select="selectComment" column="uploader" fetchType="lazy"></association>
+        <!--这里可能有问题-->
+    </resultMap>
+
+</mapper>

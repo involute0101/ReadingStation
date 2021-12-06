@@ -5,7 +5,7 @@
 <configuration>
     <settings>
     <setting name="lazyLoadingEnabled" value="true"/>
-    <setting name="aggressiveLazyLoading" value="true"/>
+    <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <environments default="development">
         <environment id="development">
@@ -20,7 +20,10 @@
     </environments>
     <mappers>
         <mapper resource="Mappers/accountMapper.xml"/>
-        <mapper resource="Mappers/bulletScreenMapper.xml"/>
+        <mapper resource="Mappers/commentMapper.xml"/>
+        <mapper resource="Mappers/bookMapper.xml"/>
     </mappers>
+    <!-- 打开延迟加载的开关 -->
+
 
 </configuration>

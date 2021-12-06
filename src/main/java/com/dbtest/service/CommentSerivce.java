@@ -1,7 +1,7 @@
 package com.dbtest.service;
 
-import com.dbtest.dao.BulletScreenMappers;
-import com.dbtest.entity.BulletScreen;
+import com.dbtest.dao.CommentMappers;
+import com.dbtest.entity.Comment;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
@@ -16,20 +16,21 @@ import java.util.Random;
 @Data
 @NoArgsConstructor
 @Service
-public class BulletScreenSerivce {
+public class CommentSerivce {
     @Autowired
     private SqlSessionFactory mybatisSqlSessionFactory;
-    public List<BulletScreen> getBulletScreenRandomly(int nums){
+    public List<Comment> getCommentRandomly(String bookName,int nums){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession()) {
-            BulletScreenMappers bulletScreenMapper=sqlSession.getMapper(BulletScreenMappers.class);
-            List<BulletScreen>bulletScreens=new ArrayList<>();
+            CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
+            List<Comment> comments =new ArrayList<>();
             Random random=new Random();
             int id=0;
-            while(bulletScreens.size()<=nums){
+            while(comments.size()<=nums){
                 id=random.nextInt(100)+1;
-                bulletScreens.add(bulletScreenMapper.selectBulletScreen(id));
+                comments.add(commentMapper.selectComment(bookName,id).get(id));
+                //此处可优化，建议优化
             }
-            return bulletScreens;
+            return comments;
         }
     }
 }
