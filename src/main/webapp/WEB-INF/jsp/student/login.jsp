@@ -7,14 +7,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>校园故障报修系统</title>
+        <title>登录</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="/src/main/resources/static/student/assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/src/main/resources/static/student/assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/src/main/resources/static/student/assets/css/form-elements.css">
-        <link rel="stylesheet" href="/src/main/resources/static/student/assets/css/style.css">
+        <link rel="stylesheet" href="/student/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/student/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/student/assets/css/form-elements.css">
+        <link rel="stylesheet" href="/student/assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,10 +25,10 @@
 
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/src/main/resources/static/student/assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/src/main/resources/static/student/assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/src/main/resources/static/student/assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/src/main/resources/static/student/assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/student/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/student/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/student/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/student/assets/ico/apple-touch-icon-57-precomposed.png">
         <script src="assets/js/login.js"></script>
     </head>
 
@@ -41,11 +41,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>报修系统</strong> 登陆端</h1>
+                            <h1><strong>在线阅读系统</strong> 登陆端</h1>
                             <div class="description">
                             	<p>
-	                            	这是一个校园报修系统
-                                    登陆进 <a href="#"><strong>报修系统</strong></a>, 你可以轻松的完成保修操作
+	                            	这是一个校园在线阅读系统
+                                    登陆进 <a href="#"><strong>在线阅读系统</strong></a>, 你可以分享并下载图书电子资源
                             	</p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                         <div class="col-sm-6 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
-                        			<h3>登陆报修系统</h3>
+                        			<h3>登陆在线阅读系统</h3>
                             		<p>输入您的账号以及密码进行登陆:</p>
                         		</div>
                         		<div class="form-top-right">
