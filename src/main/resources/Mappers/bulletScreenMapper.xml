@@ -8,7 +8,7 @@
         inner join accountDb on bulletScreenDb.account=accountDb.account
         where id=#{id}
     </select>
-    <resultMap id="bulletScreenResultMap" type="com.dbtest.pojo.BulletScreen">
+    <resultMap id="bulletScreenResultMap" type="com.dbtest.entity.BulletScreen">
         <result property="id" column="id"></result>
         <result property="content" column="content"></result>
         <association property="sender" select="selectByAccount" column="account"></association>

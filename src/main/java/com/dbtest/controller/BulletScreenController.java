@@ -1,6 +1,6 @@
 package com.dbtest.controller;
 
-import com.dbtest.pojo.BulletScreen;
+import com.dbtest.entity.BulletScreen;
 import com.dbtest.service.BulletScreenSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

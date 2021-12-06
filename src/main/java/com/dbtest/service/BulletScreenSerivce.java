@@ -1,7 +1,7 @@
 package com.dbtest.service;
 
 import com.dbtest.dao.BulletScreenMappers;
-import com.dbtest.pojo.BulletScreen;
+import com.dbtest.entity.BulletScreen;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.session.SqlSession;

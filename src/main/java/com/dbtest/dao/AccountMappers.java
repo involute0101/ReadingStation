@@ -1,9 +1,6 @@
 package com.dbtest.dao;
 
-import com.dbtest.pojo.Account;
-
-
-import java.util.List;
+import com.dbtest.entity.Account;
 
 public interface AccountMappers {
     public Account selectByAccount(String account);//account为主键

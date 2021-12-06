@@ -13,14 +13,14 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/test?serverTimezone=UTC"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="username" value="${spring.datasource.username}"/>
+                <property name="password" value="${spring.datasource.password}"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="dbMappers/accountMapper.xml"/>
-        <mapper resource="dbMappers/bulletScreenMapper.xml"/>
+        <mapper resource="Mappers/accountMapper.xml"/>
+        <mapper resource="Mappers/bulletScreenMapper.xml"/>
     </mappers>
 
 </configuration>
