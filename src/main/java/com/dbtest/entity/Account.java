@@ -2,9 +2,11 @@ package com.dbtest.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Account {
     String account;//为主键
     String name;
