@@ -13,4 +13,7 @@ public class Account {
     String password;
     Integer lv;//可删
     Integer vip;//可删
+    public Account(String account){
+        this.account=account;
+    }
 }

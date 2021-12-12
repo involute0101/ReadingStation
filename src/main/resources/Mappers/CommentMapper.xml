@@ -5,12 +5,15 @@
 <mapper namespace="com.dbtest.dao.CommentMappers">
     <select id="selectComment" resultMap="commentResultMap">
         select *from commentDb
-        inner join accountDb on commentDbDb.account=accountDb.account
-        where id=#{id}
+        inner join accountDb on commentDb.account=accountDb.account
+        where bookName=#{bookName}
     </select>
     <resultMap id="commentResultMap" type="com.dbtest.entity.Comment">
-        <result property="content" column="content"></result>
-        <association property="sender" select="selectByAccount" column="account" fetchType="lazy"></association>
+        <result property="id" column="id" javaType="java.lang.Integer"></result>
+        <result property="bookName" column="bookName" javaType="java.lang.String"></result>
+        <result property="isDescription" column="isDescription" javaType="java.lang.Integer"></result>
+        <result property="content" column="content" javaType="java.lang.String"></result>
+        <association property="sender" javaType="com.dbtest.entity.Account" column="account" select="com.dbtest.dao.AccountMappers.selectByAccount" fetchType="lazy"></association>
         <!--这里可能有问题-->
     </resultMap>
     <insert id="insertComment" parameterType="com.dbtest.entity.Comment">

@@ -19,24 +19,16 @@ import java.util.Random;
 public class CommentSerivce {
     @Autowired
     private SqlSessionFactory mybatisSqlSessionFactory;
-    public List<Comment> getCommentRandomly(String bookName,int nums){
+    public List<Comment> getComment(String bookName){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession()) {
             CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
-            List<Comment> comments =new ArrayList<>();
-            Random random=new Random();
-            int id=0;
-            while(comments.size()<=nums){
-                id=random.nextInt(100)+1;
-                comments.add(commentMapper.selectComment(bookName,id).get(id));
-                //此处可优化，建议优化
-            }
-            return comments;
+            return commentMapper.selectComment(bookName);
         }
     }
     public boolean insertComment(Comment comment){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession(true)) {//自动提交
             CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
-            commentMapper.insertComment(comment.getContent(),comment.getSender(),comment.getBookName(),comment.getIsDescription());
+            commentMapper.insertComment(comment.getContent(),comment.getSender().getAccount(),comment.getBookName(),comment.getIsDescription());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
