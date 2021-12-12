@@ -26,13 +26,20 @@ public class WebController {
     private AccountController accountController;
 
     /**
-     * 登录的GET方法
-     *
-     * @return
+     * 登录页面
      */
     @GetMapping(value = "/login")
     public String login() {
         return "login";
+    }
+
+    /**
+     * 主页
+     * @return
+     */
+    @GetMapping(value = "/index")
+    public String index() {
+        return "index";
     }
 
     /**

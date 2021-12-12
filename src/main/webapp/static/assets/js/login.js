@@ -28,6 +28,8 @@ function login()
     var password=document.getElementById("form-password").value;
     var xmlhttp;
 
+    document.cookie = "id=" + escape(name)
+
     if (window.XMLHttpRequest) {
         // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
         xmlhttp=new XMLHttpRequest();
@@ -42,8 +44,7 @@ function login()
                 alert("账号或密码有误呀...");
                 window.location.href=loginUrl;
             }else{
-                console.log("运行至此！")
-                var mainUrl = urlArr[0]+"//"+urlArr[2]+"/"+identity+"/dashboard";
+                var mainUrl = urlArr[0]+"//"+urlArr[2]+"/"+identity+"/index";
                 window.location.href=mainUrl;
             }
         }

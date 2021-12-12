@@ -1,0 +1,112 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>神来小说网 - 新神来小说网 - 神来小说网小说搜索引擎</title>
+    <meta name="keywords" content="神来小说网,神来免费小说网,新神来小说网,神来小说网小说网,神来小说网小说搜索引擎,免费小说,在线小说,小说阅读">
+    <meta name="description" content="神来小说网是书友最值得收藏的网络小说阅读网。神来小说网收录了当前最热最火的网络小说，并且持续高效的提供最新章节无弹窗阅读，是广大书友最值得推荐和收藏的网络小说阅读网。">
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <meta name="author" content="www.rightstar.cn">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="applicable-device" content="pc">
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.rightstar.cn/">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <link rel="canonical" href="https://www.rightstar.cn" />
+
+    <!-- 引入css -->
+    <link rel="stylesheet" href="../statics/css/common.css" th:href="@{~/statics/css/common.css}">
+    <link rel="stylesheet" href="../statics/css/index.css" th:href="@{~/statics/css/index.css}">
+    <link rel="stylesheet" href="../statics/css/rank.css" th:href="@{~/statics/css/rank.css}">
+    <link rel="stylesheet" href="../statics/css/search.css" th:href="@{~/statics/css/search.css}">
+    <link rel="stylesheet" href="../statics/css/bookDetail.css" th:href="@{~/statics/css/bookDetail.css}">
+</head>
+
+<body>
+
+    <!-- 头部模块模版  -->
+    <div th:replace="~{/template/head.html}"></div>
+
+    <!-- 主体模块 -->
+    <div class="w main">
+        <!-- 第一模块 -->
+        <div class="main_1_t">
+            <span>
+                当前位置：
+                <a href="/">首页</a>
+                >
+                <a th:href="|/category/|+${type}" th:text="${book.getBooktype()}">玄幻</a>
+                >
+                <a th:href="|/book/detail/|+${book.getId()}" th:text="${book.getName()}"></a>
+            </span>
+        </div>
+
+        <!-- 第二模块 -->
+        <div class="fl main_2">
+            <div class="fl main_2_l">
+                <div class="main_2_l_l"><img src="../statics/images/bookImage1.jpg" th:src="@{~/statics/images/bookImage1.jpg}" alt=""></div>
+            </div>
+
+            <div class="fl main_2_m">
+                <div class="main_2_m_t" th:text="${book.getName()}"></div>
+                <div class="nums">
+                    <span>字数 <i>517.3万字</i></span>
+                    <span>累计阅读数 <i th:text="${book.getViewnum()}">0次</i></span>
+                    <span>累计粉丝数 <i>1000</i> </span>
+                    <span>推荐指数 <i>1万</i> </span></div>
+                <div class="ps">
+
+                </div>
+                <div class="main_2_m_l">
+                    <a th:href="|/book/view/|+${book.getId()}+|/|+${book.getId()}+|1|">免费阅读</a>
+                    <div class="main_2_m_l_m">加入书架</div>
+                </div>
+            </div>
+
+            <div class="fr main_2_r">
+                <div class="main_2_r_t">
+                    <a href="#">
+                        <img src="http://static.zongheng.com/userimage/05/9d/059d6859d2e54f395b0c4331da7ef044V1_120_120.jpeg" alt="">
+                    </a>
+                </div>
+                <em class="main_2_r_t_em">本书作家</em>
+
+                <div class="main_2_r_t_yue">
+                    <span th:text="${book.getAuthor()}">月如火</span>
+                </div>
+                <div class="main_2_r_t_word">
+                    <span>作品总数<i>1</i> </span>
+                    <span>累计总数 <i>3万</i></span>
+                    <span>累计阅读数 <i>1万</i></span></div>
+                <div class="main_2_r_t_zuo">
+                    <h4>作者有话说</h4>
+                    <div>作者大大正在奋力码字哦~~~</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 第三模块 -->
+        <div class="fl main_3">
+            <h3>精彩推荐</h3>
+            <ul>
+                <li th:each="book:${recommandBooks}">
+                    <a th:href="|/book/detail/|+${book.getId()}">
+                        <div class="main_3_img">
+                            <img src="../statics/images/default.jpg" th:src="@{~/statics/images/default.jpg}" alt="">
+                        </div>
+                        <span th:text="${book.getName()}">黒巫师朱鹏</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 最底部模块模版   -->
+    <footer th:replace="~{./template/footer.html}"></footer>
+</body>
+
+</html>

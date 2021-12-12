@@ -1,0 +1,64 @@
+<!--模版文件-->
+<!-- 防止乱码 -->
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="head">
+    <!--可复用部分-->
+    <!-- 快捷导航模块 -->
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl" style="float:left">
+                <ul>
+                    <li>欢迎访问Reading Station</li>
+                </ul>
+            </div>
+            <div class="fr" style="float:right">
+                <ul>
+                    <li style="float:right">
+                        <img src="/static/css/indexWeb/statics/images/home.png" alt="">
+                        <a href="#" onclick="toDesktop('http:\//www.rightstar.cn/','ReadingStation')"> 设为首页</a>
+                    </li>
+                    <li style="float:right">
+                        <img src="/static/css/indexWeb/statics/images/icon_star.png" alt="">
+                        <a href="#"> 加入收藏</a>
+                    </li>
+                    <li style="float:right">
+                        <img src="/static/css/indexWeb/statics/images/icon_plane.png" alt="">
+                        <a href="#"> 桌面快捷</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 头部模块 -->
+        <div class="w">
+            <div class="search" >
+                <form action="/search">
+                    <input type="text" placeholder="输入搜索的书名" class="search_input" name="searchContent">
+                    <button type="submit" class="search_btn"><img src="/static/css/indexWeb/statics/images/search.png" alt=""></button>
+                </form>
+            </div>
+
+            <div class="fr header_right" style="float:right">
+                <ul>
+                    <li>
+                        <img src="/static/css/indexWeb/statics/images/person_icon.png">
+                        <span class="span_1" th:if="${#session.getAttribute('user')==null}">
+                            <a href="/user/login" class="span_1">登录</a>|
+                            <a href="/user/register" class="span_1">注册</a>
+                         </span>
+                        <span class="span_1" th:if="${#session.getAttribute('user')!=null}">
+                            <a href="/user/index" class="span_1">个人中心</a>
+                         </span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+</div>
