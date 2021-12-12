@@ -1,0 +1,109 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>神来小说网 - 新神来小说网 - 神来小说网小说搜索引擎</title>
+    <meta name="keywords" content="神来小说网,神来免费小说网,新神来小说网,神来小说网小说网,神来小说网小说搜索引擎,免费小说,在线小说,小说阅读">
+    <meta name="description" content="神来小说网是书友最值得收藏的网络小说阅读网。神来小说网收录了当前最热最火的网络小说，并且持续高效的提供最新章节无弹窗阅读，是广大书友最值得推荐和收藏的网络小说阅读网。">
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 引入css -->
+    <link rel="stylesheet" href="../statics/css/bookView.css" th:href="@{~/statics/css/bookView.css}">
+    <link rel="stylesheet" href="../statics/css/common.css" th:href="@{~/statics/css/commom.css}">
+    <link rel="stylesheet" href="../statics/css/bookDetail.css" th:href="@{~/statics/css/bookDetail.css}">
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?o0ahg8');
+            src: url('fonts/icomoon.eot?o0ahg8#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?o0ahg8') format('truetype'), url('fonts/icomoon.woff?o0ahg8') format('woff'), url('fonts/icomoon.svg?o0ahg8#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+    </style>
+    <script>
+        function addFontSize() {
+            var content = document.getElementsByClassName("content")[0];
+            var size = parseInt(content.style.fontSize.replace("px", "")) || 15
+
+            size += 1
+            content.style.fontSize = size
+            return size;
+        }
+
+        function deleteFontSize() {
+            var content = document.getElementsByClassName("content")[0];
+            var size = parseInt(content.style.fontSize.replace("px", "")) || 15
+
+            size -= 1
+            content.style.fontSize = size
+            return size;
+        }
+    </script>
+
+</head>
+
+<body>
+
+
+
+    <!-- 主体模块 -->
+    <!-- bookShelf引入 -->
+    <!-- 第一模块 -->
+    <div class="w main">
+        <!-- 第一模块 -->
+        <div class="main_1_t">
+            <span>
+                当前位置：
+                <a href="/">首页</a>
+                >
+                <a th:href="|/category/|+${type}" th:text="${book.getBooktype()}">玄幻</a>
+                >
+                <a th:href="|/book/detail/|+${book.getId()}" th:text="${book.getName()}"></a>
+            </span>
+        </div>
+
+        <div class="main_1_m">
+            <div class="main_1_m_content">
+                <div class="main_1_m_content_title" th:text="${content.getChapterName()}">第一章 借贷</div>
+                <div class="bookinfo">
+                    作者：
+                    <span th:text="${book.getAuthor()}">荆轲守</span> 字数：
+                    <span th:text="${#strings.length(content.getContent())}">3552</span> 更新时间：
+                    <span>2020-03-13 14:04:36</span>
+                </div>
+                <div class="read_line"></div>
+                <div class="content" th:text="${content.getContent()}">
+
+                </div>
+                <div class="btnbox">
+                    <a th:href="|/book/catalog/|+${book.getId()}">目录</a>
+                    <a th:href="|/book/view/|+${book.getId()}+|/|+${preChapter}">上一章</a>
+                    <a th:href="|/book/view/|+${book.getId()}+|/|+${nextChapter}">下一章</a>
+                </div>
+                <div class="buttonbox">按"键盘左键←"返回上一章 按"键盘右键→"进入下一章 按"空格键"向下滚动
+                </div>
+            </div>
+        </div>
+
+        <div class="tab">
+            <div class="tab_l">
+                <a th:href="|/book/catalog/|+${book.getId()}">目录<span class="span1">︿</span></a>
+                <a th:href="@{~/user/bookShelf}">书架<span class="span2">︿</span></a>
+                <a>设置<span class="span3">︿</span></a>
+            </div>
+            <div class="tab_r">
+
+                <a onclick="addFontSize()">放大</a>
+                <a>自动</a>
+                <a onclick="deleteFontSize()">缩小</a>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>

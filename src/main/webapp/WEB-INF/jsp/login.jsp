@@ -33,6 +33,8 @@
     </head>
 
     <body>
+    <script type="text/javascript" src="/static/css/indexWeb/statics/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/css/indexWeb/statics/js/jquery.cookie.js"></script>
 
         <!-- Top content -->
         <div class="top-content">
