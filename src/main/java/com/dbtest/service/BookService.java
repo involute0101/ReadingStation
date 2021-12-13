@@ -14,13 +14,22 @@ import java.util.List;
 import java.util.Random;
 @Service
 public class BookService {
+
     @Autowired
     private SqlSessionFactory mybatisSqlSessionFactory;
+
     public Book getBook(String bookName){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession()) {
             BookMappers mapper = sqlSession.getMapper(BookMappers.class);
             return mapper.selectBookByName(bookName);
 
+        }
+    }
+
+    public List<Book> getAllBooks(){
+        try(SqlSession sqlSession = mybatisSqlSessionFactory.openSession()){
+            BookMappers mappers = sqlSession.getMapper(BookMappers.class);
+            return mappers.selectAllBook();
         }
     }
 }

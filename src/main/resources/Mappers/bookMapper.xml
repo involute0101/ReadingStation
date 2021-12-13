@@ -5,8 +5,8 @@
 <mapper namespace="com.dbtest.dao.BookMappers">
     <select id="selectBookByName" resultMap="booktResultMap">
         select *from bookdb
-                         left outer join accountdb on bookdb.account=accountdb.account
-                         left outer join commentdb on bookdb.account=commentdb.account
+                         left outer join accountdb on bookdb.uploaderAccount=accountdb.account
+                         left outer join commentdb on bookdb.uploaderAccount=commentdb.account
         where bookName=#{bookName}
     </select>
     <resultMap id="booktResultMap" type="com.dbtest.entity.Book">
@@ -15,9 +15,22 @@
         <result property="uploadTime" column="uploadTime" javaType="DATE"></result>
         <result property="changeTime" column="changeTime" javaType="DATE"></result>
         <result property="url" column="url"></result>
-        <association property="uploader" select="selectByAccount" column="account" fetchType="lazy"></association>
+        <result property="uploaderAccount" column="uploaderAccount"></result>
         <association property="comments" select="selectComment" column="account" fetchType="lazy"></association>
         <!--这里可能有问题-->
+    </resultMap>
+
+    <select id="selectAllBook" resultMap="ListBookMap">
+        select * from book
+    </select>
+    <resultMap id="ListBookMap" type="com.dbtest.entity.Book">
+        <result property="bookName" column="bookName"></result>
+        <result property="id" column="id"></result>
+        <result property="uploadTime" column="uploadTime" javaType="DATE"></result>
+        <result property="changeTime" column="changeTime" javaType="DATE"></result>
+        <result property="url" column="url"></result>
+        <result property="uploaderAccount" column="uploaderAccount"></result>
+        <collection property="comments" select="com.dbtest.dao.CommentMappers.getCommentByBookName" column="bookName" fetchType="lazy"></collection>
     </resultMap>
 
 </mapper>

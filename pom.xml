@@ -95,6 +95,13 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.6</version>
         </dependency>
+<!--        Jpa持久化依赖-->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
 
     </dependencies>
 

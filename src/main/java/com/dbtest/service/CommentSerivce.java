@@ -22,13 +22,13 @@ public class CommentSerivce {
     public List<Comment> getComment(String bookName){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession()) {
             CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
-            return commentMapper.selectComment(bookName);
+            return commentMapper.getCommentByBookName(bookName);
         }
     }
     public boolean insertComment(Comment comment){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession(true)) {//自动提交
             CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
-            commentMapper.insertComment(comment.getContent(),comment.getSender().getAccount(),comment.getBookName(),comment.getIsDescription());
+            commentMapper.insertComment(comment.getContent(),comment.getSenderAccount(),comment.getBookName());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
