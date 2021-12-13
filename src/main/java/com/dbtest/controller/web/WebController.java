@@ -62,5 +62,7 @@ public class WebController {
         }
     }
 
+    @GetMapping("/uploads")
+    public String uploadPage() {return "upload";}
 
 }
