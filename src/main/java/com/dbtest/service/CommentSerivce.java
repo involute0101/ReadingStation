@@ -28,7 +28,7 @@ public class CommentSerivce {
     public boolean insertComment(Comment comment){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession(true)) {//自动提交
             CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
-            commentMapper.insertComment(comment.getContent(),comment.getSenderAccount(),comment.getBookName());
+            commentMapper.insertComment(comment.getContent(),comment.getSender(),comment.getBookName());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
