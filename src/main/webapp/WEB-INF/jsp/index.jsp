@@ -4,6 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Reading Station 在线阅读网站</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <link rel="shortcut icon" type="image/ico" href="/static/css/indexWeb/favicon.ico" />
     <meta name="author" content="www.rightstar.cn">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -69,8 +70,8 @@
 
     <!-- 头部模块 -->
     <div class="w">
-        <div class="search" >
-            <form action="/search">
+        <div class="search" style="margin-left: 400px">
+            <form action="/student/search">
                 <input type="text" placeholder="输入搜索的书名" class="search_input" name="searchContent">
                 <button type="submit" class="search_btn"><img src="/static/css/indexWeb/statics/images/search.png" alt=""></button>
             </form>
@@ -248,16 +249,36 @@
     <!-- 4-1左模块 -->
     <div class="fl main_4_l">
         <div class="main_2_l_t">最新更新</div>
-        <ul>
-            <li>
-                <a href="#">[类型]</a>
-                <a href="#">书名</a>
-                <a href="#">228章 章节名</a>
-                <a href="#">作者</a>
-                <span class="time">06-14 12:44</span>
-            </li>
+        <div>
+            <span style="margin-left: 20px">书名</span>
+            <span style="margin-left: 35%">上传者</span>
+            <span style="margin-left: 35%">上传时间</span>
+        </div>
+        <ul id="Books"></ul>
+        <script>
+            window.onload = function(){
+                $.ajax({
+                    url: "http://localhost:9000/Book/all",
+                    type: "get",
+                    dataType: "json",
+                    success: function(data){
+                        /*这个方法里是ajax发送请求成功之后执行的代码*/
+                        showData(data);
+                    },
+                    error: function(msg){
+                        alert("ajax连接异常："+msg);
+                    }
+                });
+            };
+            var str = "";
+            function showData(data) {
+                data.forEach((book)=>{
+                    str += "<li><span style=\"margin-left: 20px\">"+book['bookName']+"</span><span style=\"margin-left: 35%\">"+book['uploaderAccount']+"</span><span style=\"margin-left: 35%\">"+book['uploadTime']+"</span></li>";
+                    document.getElementById("Books").innerHTML = str;
+                })
 
-        </ul>
+            }
+        </script>
     </div>
 
 </div>

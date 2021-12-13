@@ -42,6 +42,11 @@ public class WebController {
         return "index";
     }
 
+    @GetMapping(value = "/search")
+    public String searchWdb(@RequestParam String searchContent){
+        return "search";
+    }
+
     /**
      * 登录的POST方法
      */
