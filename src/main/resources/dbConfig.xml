@@ -14,13 +14,13 @@
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/readingstation?serverTimezone=UTC"/>
                 <property name="username" value="root"/>
-                <property name="password" value="root"/>
+                <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
         <mapper resource="Mappers/accountMapper.xml"/>
-        <mapper resource="Mappers/commentMapper.xml"/>
+        <mapper resource="Mappers/CommentMapper.xml"/>
         <mapper resource="Mappers/bookMapper.xml"/>
     </mappers>
     <!-- 打开延迟加载的开关 -->

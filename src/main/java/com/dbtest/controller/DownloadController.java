@@ -1,6 +1,5 @@
 package com.dbtest.controller;
 
-import com.dbtest.vo.GetComment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,6 @@ public class DownloadController {//测试通过
         Properties props = new Properties();
         props.load(this.getClass().getResourceAsStream("/download.properties"));//todo:部署到服务器上记得改配置文件中的位置
         String filepath=props.getProperty("bookpath");
-        bookName=bookName;//后缀
 //        String filepath="D:/books/";//文件位置
         response.reset();
         response.setCharacterEncoding("UTF-8");
