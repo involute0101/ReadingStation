@@ -3,22 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dbtest.dao.BookMappers">
-    <select id="selectBookByName" resultMap="booktResultMap">
-        select *from bookdb
-                         left outer join accountdb on bookdb.uploaderAccount=accountdb.account
-                         left outer join commentdb on bookdb.uploaderAccount=commentdb.account
-        where bookName=#{bookName}
-    </select>
-    <resultMap id="booktResultMap" type="com.dbtest.entity.Book">
-        <result property="bookName" column="bookName"></result>
-        <result property="id" column="id"></result>
-        <result property="uploadTime" column="uploadTime" javaType="DATE"></result>
-        <result property="changeTime" column="changeTime" javaType="DATE"></result>
-        <result property="url" column="url"></result>
-        <result property="uploaderAccount" column="uploaderAccount"></result>
-        <association property="comments" select="selectComment" column="account" fetchType="lazy"></association>
-        <!--这里可能有问题-->
-    </resultMap>
+<!--    <select id="selectBookByName" resultMap="booktResultMap">-->
+<!--        select *from bookdb-->
+<!--                         left outer join accountdb on bookdb.uploaderAccount=accountdb.account-->
+<!--                         left outer join commentdb on bookdb.uploaderAccount=commentdb.account-->
+<!--        where bookName=#{bookName}-->
+<!--    </select>-->
+<!--    <resultMap id="booktResultMap" type="com.dbtest.entity.Book">-->
+<!--        <result property="bookName" column="bookName"></result>-->
+<!--        <result property="id" column="id"></result>-->
+<!--        <result property="uploadTime" column="uploadTime" javaType="DATE"></result>-->
+<!--        <result property="changeTime" column="changeTime" javaType="DATE"></result>-->
+<!--        <result property="url" column="url"></result>-->
+<!--        <result property="uploaderAccount" column="uploaderAccount"></result>-->
+<!--        <association property="comments" select="selectComment" column="account" fetchType="lazy"></association>-->
+<!--        &lt;!&ndash;这里可能有问题&ndash;&gt;-->
+<!--    </resultMap>-->
+
+<!--    这里用的我的数据库-->
+        <select id="selectBookByName" resultMap="booktResultMap">
+            <bind name="name" value="'%' + bookName + '%'"/>
+            select *from book where bookName like #{name}
+        </select>
+        <resultMap id="booktResultMap" type="com.dbtest.entity.Book">
+            <result property="bookName" column="bookName"></result>
+            <result property="id" column="id"></result>
+            <result property="uploadTime" column="uploadTime" javaType="DATE"></result>
+            <result property="changeTime" column="changeTime" javaType="DATE"></result>
+            <result property="url" column="url"></result>
+            <result property="uploaderAccount" column="uploaderAccount"></result>
+            <collection property="comments" select="com.dbtest.dao.CommentMappers.getCommentByBookName" column="bookName" fetchType="lazy"></collection>
+        </resultMap>
 
     <select id="selectAllBook" resultMap="ListBookMap">
         select * from book

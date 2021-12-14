@@ -249,12 +249,9 @@
     <!-- 4-1左模块 -->
     <div class="fl main_4_l">
         <div class="main_2_l_t">最新更新</div>
-        <div>
-            <span style="margin-left: 20px">书名</span>
-            <span style="margin-left: 35%">上传者</span>
-            <span style="margin-left: 35%">上传时间</span>
-        </div>
-        <ul id="Books"></ul>
+
+        <table width="100%" id="Books"></table>
+
         <script>
             window.onload = function(){
                 $.ajax({
@@ -271,9 +268,10 @@
                 });
             };
             var str = "";
+            str+="<tr> <th>书名</th> <th>上传者</th> <th>上传时间</th> </tr>";
             function showData(data) {
                 data.forEach((book)=>{
-                    str += "<li><span style=\"margin-left: 20px\">"+book['bookName']+"</span><span style=\"margin-left: 35%\">"+book['uploaderAccount']+"</span><span style=\"margin-left: 35%\">"+book['uploadTime']+"</span></li>";
+                    str += "<tr> <td width=\"33%\" align=\"center\">"+book['bookName']+"</td> <td width=\"33%\" align=\"center\">"+book['uploaderAccount']+"</td> <td width=\"33%\" align=\"center\">"+book['uploadTime']+"</td> </tr>";
                     document.getElementById("Books").innerHTML = str;
                 })
 

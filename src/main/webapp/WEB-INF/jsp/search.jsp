@@ -3,9 +3,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>神来小说网 - 新神来小说网 - 神来小说网小说搜索引擎</title>
-    <meta name="keywords" content="神来小说网,神来免费小说网,新神来小说网,神来小说网小说网,神来小说网小说搜索引擎,免费小说,在线小说,小说阅读">
-    <meta name="description" content="神来小说网是书友最值得收藏的网络小说阅读网。神来小说网收录了当前最热最火的网络小说，并且持续高效的提供最新章节无弹窗阅读，是广大书友最值得推荐和收藏的网络小说阅读网。">
+    <title>Reading Station 在线阅读网站</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- 引入css -->
@@ -48,7 +47,7 @@
     <!-- 头部模块 -->
     <div class="w">
         <div class="search" style="margin-left: 400px">
-            <form action="/search">
+            <form action="/student/search">
                 <input type="text" placeholder="输入搜索的书名" class="search_input" name="searchContent">
                 <button type="submit" class="search_btn"><img src="/static/css/indexWeb/statics/images/search.png" alt=""></button>
             </form>
@@ -129,63 +128,49 @@
                 <span>搜索结果</span>
             </div>
             <!-- 搜索内容模块 -->
-            <div class="main_r_l" th:each="book,bookStat:${searchResult}">
-                <a th:href="|/book/detail/|+${book.getId()}">
-                    <img src="/static/css/indexWeb/statics/images/nocover.jpg" alt="">
-                </a>
+            <div class="main_r_l" th:each="book,bookStat:${searchResult}" id="searchResult">
 
-                <div class="main_r_l_m">
-                    <div class="main_r_l_m_1">
-                        <div class="main_r_l_m_1_s1">
-                            <span th:class="${bookStat.index<3?'bg_red':'bg_grey'}" th:text="${bookStat.count}"></span>
-<%--                            <a th:href="|./book/detail/|+${book.getId()}" th:text="${book.getName()}">长生界</a>--%>
-                            <a id="bookName">一本书</a>
-                        </div>
-                        <span class="main_r_l_m_1_s2">
-                        作者: <a id="author"> 辰东</a>
-                        <span>分类：</span>
-                        <a th:href="|/book/detail/|+${book.getId()}" th:text="${book.getBooktype()}">书籍</a>
-                        </span>
-                        <script>
-                            window.onload = function(){
-                                $.ajax({
-                                    url: "http://localhost:9000/Book/all",
-                                    type: "get",
-                                    dataType: "json",
-                                    success: function(data){
-                                        /*这个方法里是ajax发送请求成功之后执行的代码*/
-                                        showData(data);
-                                    },
-                                    error: function(msg){
-                                        alert("ajax连接异常："+msg);
-                                    }
-                                });
-                            };
-                            var str = "";
-                            function showData(data) {
-                                data.forEach((book)=>{
-                                    str += "<li><span style=\"margin-left: 20px\">"+book['bookName']+"</span><span style=\"margin-left: 35%\">"+book['uploaderAccount']+"</span><span style=\"margin-left: 35%\">"+book['uploadTime']+"</span></li>";
-                                    document.getElementById("Books").innerHTML = str;
-                                })
-
+                <script>
+                    //获取url参数,r[2]是值
+                    let reg = new RegExp('(^|&)' + 'searchContent' + '=([^&]*)(&|$)')
+                    let r = window.location.search.substr(1).match(reg)
+                    window.onload = function(){
+                        $.ajax({
+                            url: "http://localhost:9000/Book/getByName?bookName="+r[2],
+                            type: "get",
+                            dataType: "json",
+                            success: function(data){
+                                /*这个方法里是ajax发送请求成功之后执行的代码*/
+                                showData(data);
+                            },
+                            error: function(msg){
+                                alert("ajax连接异常："+msg);
                             }
-                        </script>
-                        <span class="main_r_l_m_1_s3" th:text="${book.getViewnum()}">159人在读</span>
-                    </div>
+                        });
+                    };
+                    var str = "";
+                    function showData(data) {
+                        data.forEach((book)=>{
+                            //str += "<li><span style=\"margin-left: 20px\">"+book['bookName']+"</span><span style=\"margin-left: 35%\">"+book['uploaderAccount']+"</span><span style=\"margin-left: 35%\">"+book['uploadTime']+"</span></li>";
+                            // document.getElementById("bookName").innerHTML = book['bookName'];
+                            // document.getElementById("author").innerHTML = book['uploaderAccount'];
 
-                    <span th:text="${book.getInfo()}" class="display_left "></span>
-                    <div class="main_r_l_m_3">
-                        <span>最新更新：
-                             <a th:href="|/book/detail/|+${book.getId()}" th:text="${book.getInfo()}" ></a>
-                        </span>
-                        <span></span>
-                    </div>
-                </div>
+                            str +="<div style='height: 40px'></div>"+
+                                "<div class=\"main_r_l\" style='margin-top: -40px'>"+
+                                "<a ><img src=\"/static/css/indexWeb/statics/images/nocover.jpg\" alt=\"\"></a>"+"<div class=\"main_r_l_m\">"+
+                                "<div class=\"main_r_l_m\">"+
+                                "<div class=\"main_r_l_m_1\">"+"<div class=\"main_r_l_m_1_s1\"> <span th:class='bg_red'} ></span> <a >"+book['bookName']+"</a> </div>"+
+                                "<span class=\"main_r_l_m_1_s2\">上传者: <a >"+book['uploaderAccount']+"</a> <span>分类：</span> <a >书籍</a> </span>"+
+                                "<span class=\"main_r_l_m_1_s3\" >159人在读</span>"+"</div>"+"<span class=\"display_left\"></span>"+
+                                "<div class=\"main_r_l_m_3\"><span>最新更新：<a ></a></span></div>"+"</div>"+
+                                "<div class=\"main_r_l_r\" style='margin-top: -80px'><a >立即阅读</a><a>加入收藏</a></div>"+"</div>"+"</div>";
+                            document.getElementById("searchResult").innerHTML = str;
+                        })
 
-                <div class="main_r_l_r">
-                    <a href="#" th:href="|/book/detail/|+${book.getId()}">立即阅读</a>
-                    <a th:href="|/book/detail/|+${book.getId()}">加入收藏</a>
-                </div>
+                    }
+                </script>
+
+
             </div>
 
         </div>

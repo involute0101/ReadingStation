@@ -9,9 +9,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class Comment {
     @Id
-    int id;
-    String bookName;
-    int isDescription;//true表示对书的描述,上传者和管理员使用
-    String  sender;
-    String content;//Stringbuffer更好???
+    private int id;
+
+    private String bookName;
+
+    private String  sender;
+
+    private String content;
 }

@@ -16,9 +16,8 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    @PostMapping("/getByName")
-    @ResponseBody
-    public Book getBookByName(@RequestBody String bookName) {
+    @GetMapping("/getByName")
+    public List<Book> getBookByName(@RequestParam String bookName) {
         System.out.println(bookService.getBook(bookName));
         return bookService.getBook(bookName);
     }

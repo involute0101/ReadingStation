@@ -18,7 +18,7 @@ public class BookService {
     @Autowired
     private SqlSessionFactory mybatisSqlSessionFactory;
 
-    public Book getBook(String bookName){
+    public List<Book> getBook(String bookName){
         try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession()) {
             BookMappers mapper = sqlSession.getMapper(BookMappers.class);
             return mapper.selectBookByName(bookName);
