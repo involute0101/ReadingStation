@@ -157,7 +157,7 @@
             document.getElementById("uploadAccount").innerHTML = data['uploaderAccount']
             document.getElementById("uploadDate").innerHTML = data['uploadTime']
             document.getElementById("description").innerHTML = data['description']
-            document.getElementById("startRead").innerHTML = "<a href='../../PDF/"+data['bookName']+".pdf' class=\"buy_btn\">开始阅读</a>";
+            document.getElementById("startRead").innerHTML = "<a href='../../Book/PDF/"+data['bookName']+".pdf' class=\"buy_btn\">开始阅读</a>";
 
             data['comments'].forEach((comment)=>{
                 commentStr+="<div class=\"comment\"><span class=\"comment-avatar\">"+

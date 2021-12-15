@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @JsonIgnoreProperties(value = "handler")
 public class Book {
+
     @Id
     private int id;
 
@@ -29,9 +31,9 @@ public class Book {
      */
     private String description;
 
-    private Data uploadTime;
+    private Date uploadTime;
 
-    private Data changeTime;
+    private Date changeTime;
 
     private String url = "/books/" + bookName + ".pdf";//暂不清楚初始化和@AllArgsConstructor是否有冲突
 

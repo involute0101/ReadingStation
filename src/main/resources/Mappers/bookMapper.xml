@@ -25,6 +25,10 @@
     <select id="selectAllBook" resultMap="ListBookMap">
         select * from book
     </select>
+
+    <select id="getBooksByAccount" resultMap="ListBookMap">
+        select * from book where uploaderAccount = #{account}
+    </select>
     <resultMap id="ListBookMap" type="com.dbtest.entity.Book">
         <result property="bookName" column="bookName"></result>
         <result property="id" column="id"></result>
@@ -34,5 +38,10 @@
         <result property="uploaderAccount" column="uploaderAccount"></result>
         <collection property="comments" select="com.dbtest.dao.CommentMappers.getCommentByBookName" column="bookName" fetchType="lazy"></collection>
     </resultMap>
+
+    <insert id="insertBook" parameterType="com.dbtest.entity.Book" useGeneratedKeys="true" keyProperty="id">
+        insert into book (bookName,uploaderAccount,description,uploadTime,changeTime) VALUES
+            (#{bookName},#{uploaderAccount},#{description},#{uploadTime},#{changeTime})
+    </insert>
 
 </mapper>

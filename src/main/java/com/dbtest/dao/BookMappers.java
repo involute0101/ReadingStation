@@ -17,5 +17,7 @@ public interface BookMappers {
 
     public List<Book> selectAllBook();
 
-    //public void insertBook();//todo:稍后再说
+    public List<Book> getBooksByAccount(String account);
+
+    public void insertBook(Book book);
 }

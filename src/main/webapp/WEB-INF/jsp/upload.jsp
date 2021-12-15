@@ -7,13 +7,24 @@
 </head>
 <body>
 <h1>文件上传页面</h1>
-<form name="fileUploadForm" method="post" action="/upload" enctype="multipart/form-data" onsubmit="onSubmit()">
+<form id="fileUploadForm" name="fileUploadForm" method="post" action="/upload" enctype="multipart/form-data" onsubmit="onSubmit()">
     选择要上传的文件：<input type="file" name="file"><br>
     <hr>
+    <input id="userAccount" name="userAccount" type="hidden" value="">
+    <textarea name="description" form="fileUploadForm" cols="80" rows="5" placeholder="对上传的书籍做个简介吧~"></textarea>
     <input type="submit" value="提交">
 </form>
 <script>
     function onSubmit() {
+        var startIndex = document.cookie.indexOf("id=")
+        var idString;
+        if(document.cookie.indexOf(";")==-1){
+            idString = document.cookie.substring(startIndex,document.cookie.length)
+        }else{
+            idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
+        }
+        var id = document.cookie.substring(idString.indexOf("=")+1,idString.length);
+        document.getElementById("userAccount").setAttribute("value",id)
         alert("成功上传"+document.forms["fileUploadForm"]["file"].value+"文件！")
     }
 

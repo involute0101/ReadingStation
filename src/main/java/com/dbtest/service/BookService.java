@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 @Service
@@ -37,6 +38,23 @@ public class BookService {
         try(SqlSession sqlSession = mybatisSqlSessionFactory.openSession()){
             BookMappers mappers = sqlSession.getMapper(BookMappers.class);
             return mappers.selectAllBook();
+        }
+    }
+
+    public List<Book> getBooksByAccount(String account){
+        try(SqlSession sqlSession = mybatisSqlSessionFactory.openSession()){
+            BookMappers mappers = sqlSession.getMapper(BookMappers.class);
+            return mappers.getBooksByAccount(account);
+        }
+    }
+
+    public void insertBook(Book book){
+        book.setUploadTime(new Date());
+        book.setChangeTime(book.getUploadTime());
+        try(SqlSession sqlSession = mybatisSqlSessionFactory.openSession()){
+            BookMappers mappers = sqlSession.getMapper(BookMappers.class);
+            mappers.insertBook(book);
+            sqlSession.commit();
         }
     }
 }

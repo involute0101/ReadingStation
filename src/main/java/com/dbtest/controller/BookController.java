@@ -37,4 +37,9 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
+    @GetMapping(value = "/byAccount")
+    public List<Book> getBooksByAccount(@RequestParam String account){
+        return bookService.getBooksByAccount(account);
+    }
+
 }

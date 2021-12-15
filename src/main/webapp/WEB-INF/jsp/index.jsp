@@ -91,29 +91,29 @@
                     <span class="span_1" id="personInformation">
                             <a href="/user/index" class="span_1">个人中心</a>
                     </span>
-                    <script>
-                        var startIndex = document.cookie.indexOf("id=")
-                        var idString;
-                        if(document.cookie.indexOf(";")==-1){
-                            idString = document.cookie.substring(startIndex,document.cookie.length)
-                        }else{
-                            idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
-                        }
-                        var param = document.cookie.substring(idString.indexOf("="),idString.length);
-                        document.getElementById("userName").innerText=param;
-                        var loginRegister = document.getElementById("loginRegister")
-                        var personInformation = document.getElementById("personInformation")
-                        if(param!=null){
-                            loginRegister.style.display = "none"
-                            personInformation.style.display = ""
-                        }
-                        else {
-                            loginRegister.style.display = ""
-                            personInformation.style.display = "none"
-                        }
-                    </script>
-                </li>
 
+                </li>
+                <script>
+                    var startIndex = document.cookie.indexOf("id=")
+                    var idString;
+                    if(document.cookie.indexOf(";")==-1){
+                        idString = document.cookie.substring(startIndex,document.cookie.length)
+                    }else{
+                        idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
+                    }
+                    var param = document.cookie.substring(idString.indexOf("=")+1,idString.length);
+                    document.getElementById("userName").innerText=param;
+                    var loginRegister = document.getElementById("loginRegister")
+                    var personInformation = document.getElementById("personInformation")
+                    if(param!=null){
+                        loginRegister.style.display = "none"
+                        personInformation.style.display = ""
+                    }
+                    else {
+                        loginRegister.style.display = ""
+                        personInformation.style.display = "none"
+                    }
+                </script>
             </ul>
         </div>
     </div>
@@ -129,9 +129,8 @@
     <!-- 1-1左模块 -->
     <div class="fl main_1">
         <div class="main_1_l">
-            <div class="main_1_l_t">我的书籍</div>
-            <ul id="mBooks">
-                <li ><a ></a></li>
+            <div class="main_1_l_t" style="white-space:pre;"><a href="uploads">我的书籍          上传</a></div>
+            <ul id="myBooks">
             </ul>
         </div>
     </div>
@@ -213,7 +212,27 @@
         <table width="100%" id="Books"></table>
 
         <script>
+            var startIndex = document.cookie.indexOf("id=")
+            var idString;
+            if(document.cookie.indexOf(";")==-1){
+                idString = document.cookie.substring(startIndex,document.cookie.length)
+            }else{
+                idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
+            }
+            var id = document.cookie.substring(idString.indexOf("=")+1,idString.length);
             window.onload = function(){
+                $.ajax({
+                    url: "http://localhost:9000/Book/byAccount?account="+id,
+                    type: "get",
+                    dataType: "json",
+                    success: function(data){
+                        /*这个方法里是ajax发送请求成功之后执行的代码*/
+                        showData2(data);
+                    },
+                    error: function(msg){
+                        alert("ajax连接异常："+msg);
+                    }
+                });
                 $.ajax({
                     url: "http://localhost:9000/Book/all",
                     type: "get",
@@ -234,7 +253,13 @@
                     str += "<tr> <td width=\"33%\" align=\"center\">"+book['bookName']+"</td> <td width=\"33%\" align=\"center\">"+book['uploaderAccount']+"</td> <td width=\"33%\" align=\"center\">"+book['uploadTime']+"</td> </tr>";
                     document.getElementById("Books").innerHTML = str;
                 })
-
+            }
+            var myBooksStr = "";
+            function showData2(data) {
+                data.forEach((book)=>{
+                    myBooksStr += "<div style='margin-top: 10px;margin-left: 5px'><a href='book?bookName="+book['bookName']+"'>《"+book['bookName']+"》</a></div>";
+                    document.getElementById("myBooks").innerHTML = myBooksStr;
+                })
             }
         </script>
     </div>
