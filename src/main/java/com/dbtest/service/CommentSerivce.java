@@ -19,16 +19,19 @@ import java.util.Random;
 public class CommentSerivce {
     @Autowired
     private SqlSessionFactory mybatisSqlSessionFactory;
-    public List<Comment> getComment(String bookName){
-        try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession()) {
-            CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
+
+    public List<Comment> getComment(String bookName) {
+        try (SqlSession sqlSession = mybatisSqlSessionFactory.openSession()) {
+            CommentMappers commentMapper = sqlSession.getMapper(CommentMappers.class);
             return commentMapper.getCommentByBookName(bookName);
         }
     }
-    public boolean insertComment(Comment comment){
-        try(SqlSession sqlSession=mybatisSqlSessionFactory.openSession(true)) {//自动提交
-            CommentMappers commentMapper=sqlSession.getMapper(CommentMappers.class);
-            commentMapper.insertComment(comment.getContent(),comment.getSender(),comment.getBookName());
+
+    public boolean insertComment(Comment comment) {
+        try (SqlSession sqlSession = mybatisSqlSessionFactory.openSession()) {
+            CommentMappers commentMapper = sqlSession.getMapper(CommentMappers.class);
+            commentMapper.insertComment(comment);
+            sqlSession.commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

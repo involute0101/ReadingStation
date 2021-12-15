@@ -64,9 +64,6 @@
                             <a href="/user/login" class="span_1">登录</a>|
                             <a href="/user/register" class="span_1">注册</a>
                     </span>
-                    <span class="span_1" id="personInformation">
-                            <a href="/user/index" class="span_1">个人中心</a>
-                    </span>
                     <script>
                         var startIndex = document.cookie.indexOf("id=")
                         var idString;
@@ -75,7 +72,7 @@
                         }else{
                             idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
                         }
-                        var param = document.cookie.substring(idString.indexOf("="),idString.length);
+                        var param = document.cookie.substring(idString.indexOf("=")+1,idString.length);
                         document.getElementById("userName").innerText=param;
                         var loginRegister = document.getElementById("loginRegister")
                         var personInformation = document.getElementById("personInformation")

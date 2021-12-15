@@ -120,12 +120,14 @@
 <div class="containerComment">
      <div class="comment-send">
 <%--         这里可以http--%>
-         <form id="commentForm" method="GET" action="">
+         <form id="commentForm" method="post" action="/Comment/insertComment" enctype="multipart/form-data" onsubmit="onSubmit()">
              <span class="comment-avatar">
                  <img src="/static/css/indexWeb/statics/images/personHead.png" alt="avatar">
              </span>
-             <textarea class="comment-send-input" name="comment" form="commentForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
+             <textarea class="comment-send-input" name="content" form="commentForm" cols="80" rows="5" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"></textarea>
              <br><br>
+             <input id="userAccount" name="userAccount" type="hidden" value="">
+             <input id="commentBookName" name="commentBookName" type="hidden" value="">
              <input class="comment-send-button" type="submit" value="发表评论" style="margin-left:100px;margin-bottom: 10px">
          </form>
      </div>
@@ -169,6 +171,19 @@
                     "</p></div><div class=\"cls\"></div></div>";
             })
             document.getElementById("commentList").innerHTML = commentStr;
+        }
+        function onSubmit(){
+            var startIndex = document.cookie.indexOf("id=")
+            var idString;
+            if(document.cookie.indexOf(";")==-1){
+                idString = document.cookie.substring(startIndex,document.cookie.length)
+            }else{
+                idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
+            }
+            var id = document.cookie.substring(idString.indexOf("=")+1,idString.length);
+            document.getElementById("userAccount").setAttribute("value",id)
+            document.getElementById("commentBookName").setAttribute("value",r[2])
+            alert("评论已发布~感谢您的精彩评论")
         }
     </script>
 </div>

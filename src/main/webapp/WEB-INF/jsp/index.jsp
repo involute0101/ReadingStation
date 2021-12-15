@@ -53,15 +53,7 @@
                 <ul>
                     <li style="float:right">
                         <img src="/static/css/indexWeb/statics/images/home.png" alt="">
-                        <a href="#" onclick="toDesktop('http:\//www.rightstar.cn/','ReadingStation')"> 设为首页</a>
-                    </li>
-                    <li style="float:right">
-                        <img src="/static/css/indexWeb/statics/images/icon_star.png" alt="">
-                        <a href="#"> 加入收藏</a>
-                    </li>
-                    <li style="float:right">
-                        <img src="/static/css/indexWeb/statics/images/icon_plane.png" alt="">
-                        <a href="#"> 桌面快捷</a>
+                        <a href="/student/index" > 返回首页</a>
                     </li>
                 </ul>
             </div>

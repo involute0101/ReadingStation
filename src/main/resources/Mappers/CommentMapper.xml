@@ -13,8 +13,9 @@
         <result property="sender" column="account" javaType="java.lang.String"></result>
         <!--这里可能有问题-->
     </resultMap>
-    <insert id="insertComment" parameterType="com.dbtest.entity.Comment">
-        insert into commentdb(content,account,bookName,isDescription)
-        values (#{content},#{account},#{bookName},#{isDescription})
+
+    <insert id="insertComment" parameterType="com.dbtest.entity.Comment" useGeneratedKeys="true" keyProperty="id">
+        insert into comment(bookName,sender,content,sendTime)
+        values (#{bookName},#{sender},#{content},#{sendTime})
     </insert>
 </mapper>
