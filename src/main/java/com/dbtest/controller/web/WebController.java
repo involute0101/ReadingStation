@@ -43,14 +43,18 @@ public class WebController {
     }
 
     @GetMapping(value = "/search")
-    public String searchWdb(@RequestParam String searchContent){
+    public String searchWeb(@RequestParam String searchContent){
         return "search";
+    }
+
+    @GetMapping(value = "/book")
+    public String bookWeb(@RequestParam String bookName){
+        return "book";
     }
 
     /**
      * 登录的POST方法
      */
-    //toDo:请做一下index的页面
     @PostMapping(value = "/userLogin")
     @ResponseBody
     public LoginResult userLogin(@RequestParam Map<String, Object> params) {
@@ -68,6 +72,8 @@ public class WebController {
     }
 
     @GetMapping("/uploads")
-    public String uploadPage() {return "upload";}
+    public String uploadPage() {
+        return "upload";
+    }
 
 }

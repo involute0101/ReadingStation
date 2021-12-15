@@ -24,6 +24,11 @@ public class Book {
 
     private String uploaderAccount;
 
+    /**
+     * 书籍简介
+     */
+    private String description;
+
     private Data uploadTime;
 
     private Data changeTime;

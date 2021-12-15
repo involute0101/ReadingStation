@@ -7,10 +7,16 @@
 </head>
 <body>
 <h1>文件上传页面</h1>
-<form method="post" action="/upload" enctype="multipart/form-data">
+<form name="fileUploadForm" method="post" action="/upload" enctype="multipart/form-data" onsubmit="onSubmit()">
     选择要上传的文件：<input type="file" name="file"><br>
     <hr>
     <input type="submit" value="提交">
 </form>
+<script>
+    function onSubmit() {
+        alert("成功上传"+document.forms["fileUploadForm"]["file"].value+"文件！")
+    }
+
+</script>
 </body>
 </html>

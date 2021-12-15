@@ -129,15 +129,10 @@
     <!-- 1-1左模块 -->
     <div class="fl main_1">
         <div class="main_1_l">
-            <div class="main_1_l_t">作品分类</div>
-<%--            <ul>--%>
-<%--                <li th:each="book,bookStat:${bookType}" th:value="${book}">--%>
-<%--                    <a href="/category" th:href="|/category/|+${typeMap.get(__${bookStat.index}__)}">--%>
-<%--                        <span th:text="${book}"></span>--%>
-<%--                        <span th:text="${booksCount.get(__${bookStat.index}__)}">0</span>--%>
-<%--                    </a>--%>
-<%--                </li>--%>
-<%--            </ul>--%>
+            <div class="main_1_l_t">我的书籍</div>
+            <ul id="mBooks">
+                <li ><a ></a></li>
+            </ul>
         </div>
     </div>
     <!-- 1-2中模块 -->
@@ -206,41 +201,6 @@
             </ul>
         </div>
     </div>
-    <!-- 第三模块 -->
-    <div class=" w main_3">
-        <!-- 3-1左模块 -->
-        <div class="fl main_3_l">
-            <div class="fl main_3_l_a" th:each="type,typeStat:${bookType}">
-                <div class="main_3_l_t">
-                    <span></span>
-<%--                    <a href="#" th:href="|/category/|+${typeMap.get(__${typeStat.index}__)}">--%>
-<%--                        <strong th:text="${type}">玄幻</strong>--%>
-<%--                    </a>--%>
-                </div>
-                <div class="main_3_l_m" th:each="book,bookStat:${books.get(typeMap.get(typeStat.index))}" th:if="${bookStat.index==0}">
-                    <a href="#" th:href="|./book/detail/|+${book.getId()}">
-                        <img th:data-original="/static/css/indexWeb/statics/images/nocover.jpg" src="/static/css/indexWeb/statics/images/nocover.jpg" alt="">
-                    </a>
-                    <div class="main_3_l_m_1">
-                        <div class="main_3_l_m_1_1">
-                            <a href="#" th:href="|./book/detail/|+${book.getId()}" th:text="${book.getName()}">书名</a>
-                        </div>
-                        <div class="main_3_l_m_1_2" th:text="${book.getInfo()}">书籍介绍</div>
-                        <div>
-                            <a href="#" class="main_3_l_m_1_3" th:href="|./book/detail/|+${book.getId()}" th:text="${book.getAuthor()}">作者</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="main_3_l_l" th:each="book,bookStat:${books.get(typeMap.get(typeStat.index))}" th:if="${bookStat.index>=1&&bookStat.index<5}">
-                    <a href="#" th:href="|/book/detail/|+${book.getId()}" th:text="${book.getName()}">书名</a>
-                    <a href="#" th:href="|/book/detail/|+${book.getId()}" th:text="${book.getAuthor()}">作者</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-
 
 </div>
 

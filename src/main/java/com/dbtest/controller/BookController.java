@@ -18,9 +18,14 @@ public class BookController {
 
     @GetMapping("/getByName")
     public List<Book> getBookByName(@RequestParam String bookName) {
-        System.out.println(bookService.getBook(bookName));
         return bookService.getBook(bookName);
     }
+
+    @GetMapping(value = "/oneBook")
+    public Book getOneBookByName(@RequestParam String bookName){
+        return bookService.getOneBook(bookName);
+    }
+
     @PostMapping("/uploadBooks")
     @ResponseBody
     public String addBook(@RequestBody MultipartFile file) throws IOException {//todo:稍后再说

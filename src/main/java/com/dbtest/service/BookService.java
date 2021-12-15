@@ -26,6 +26,13 @@ public class BookService {
         }
     }
 
+    public Book getOneBook(String bookName){
+        try(SqlSession sqlSession = mybatisSqlSessionFactory.openSession()){
+            BookMappers mappers = sqlSession.getMapper(BookMappers.class);
+            return mappers.selectOneBookByName(bookName);
+        }
+    }
+
     public List<Book> getAllBooks(){
         try(SqlSession sqlSession = mybatisSqlSessionFactory.openSession()){
             BookMappers mappers = sqlSession.getMapper(BookMappers.class);

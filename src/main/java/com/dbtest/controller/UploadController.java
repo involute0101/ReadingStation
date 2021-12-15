@@ -1,10 +1,11 @@
 package com.dbtest.controller;
 
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,17 +14,18 @@ import java.util.Properties;
 @Controller
 public class UploadController {
 
+    @Value("${PDF.filePath}")
+    private String uploadFilePath;
 
     @PostMapping("/upload")
     @ResponseBody
-    public String upload(@RequestPart MultipartFile file) throws IOException {//测试通过
+    public void upload(@RequestPart MultipartFile file, HttpServletResponse response) throws IOException {//测试通过
+        System.out.println("上传路径："+uploadFilePath);
         String fileName = file.getOriginalFilename();
-        Properties props = new Properties();
-        props.load(this.getClass().getResourceAsStream("/download.properties"));//todo:部署到服务器上记得改配置文件中的位置
-        String filepath=props.getProperty("bookpath");
-        File dest = new File(filepath+"/"+fileName);
+        File dest = new File(uploadFilePath+fileName);
         Files.copy(file.getInputStream(), dest.toPath());
-        return "Upload file success : " + dest.getAbsolutePath();
+        //return "Upload file success : " + dest.getAbsolutePath();
+        response.sendRedirect("/student/index");
     }
 
 }

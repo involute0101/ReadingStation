@@ -163,7 +163,7 @@
                                 "<span class=\"main_r_l_m_1_s2\">上传者: <a >"+book['uploaderAccount']+"</a> <span>分类：</span> <a >书籍</a> </span>"+
                                 "<span class=\"main_r_l_m_1_s3\" >159人在读</span>"+"</div>"+"<span class=\"display_left\"></span>"+
                                 "<div class=\"main_r_l_m_3\"><span>最新更新：<a ></a></span></div>"+"</div>"+
-                                "<div class=\"main_r_l_r\" style='margin-top: -80px'><a >立即阅读</a><a>加入收藏</a></div>"+"</div>"+"</div>";
+                                "<div class=\"main_r_l_r\" style='margin-top: -80px'><a href='book?bookName="+book['bookName']+"'>立即阅读</a><a>加入收藏</a></div>"+"</div>"+"</div>";
                             document.getElementById("searchResult").innerHTML = str;
                         })
 

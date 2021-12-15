@@ -16,4 +16,6 @@ public class Comment {
     private String  sender;
 
     private String content;
+
+    private String sendTime;
 }
