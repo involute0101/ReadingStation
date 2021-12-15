@@ -9,15 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class StaticResourcesConfig implements WebMvcConfigurer  {
 
-//    @Value("${spring.mvc.static-path-pattern}")
-//    private String resourceHandler; //匹配url 中的资源映射
-//
-//    @Value("${PDF.filePath}")
-//    private String location; //上传文件保存的本地目录
+    @Value("${PDF.filePath}")
+    private String pdfFilePath;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/Book/PDF/**").addResourceLocations("file:E:/PDF/");
+        registry.addResourceHandler("/Book/PDF/**").addResourceLocations(pdfFilePath);
 
     }
 }
