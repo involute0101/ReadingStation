@@ -7,12 +7,12 @@
 </head>
 <body>
 <h1>文件上传页面</h1>
-<form id="fileUploadForm" name="fileUploadForm" method="post" action="/upload" enctype="multipart/form-data" onsubmit="onSubmit()">
+<form id="fileUploadForm" name="fileUploadForm" method="post" action="/upload" enctype="multipart/form-data" onsubmit="return onSubmit()">
     选择要上传的文件：<input type="file" name="file"><br>
     <hr>
     <input id="userAccount" name="userAccount" type="hidden" value="">
-    <textarea name="description" form="fileUploadForm" cols="80" rows="5" placeholder="对上传的书籍做个简介吧~"></textarea>
-    <input type="submit" value="提交">
+    <textarea id="description" name="description" form="fileUploadForm" cols="80" rows="5" placeholder="对上传的书籍做个简介吧~"></textarea>
+    <input id="submitButton" type="submit" value="提交">
 </form>
 <script>
     function onSubmit() {
@@ -25,7 +25,19 @@
         }
         var id = document.cookie.substring(idString.indexOf("=")+1,idString.length);
         document.getElementById("userAccount").setAttribute("value",id)
-        alert("成功上传"+document.forms["fileUploadForm"]["file"].value+"文件！")
+        if(document.getElementById("description").value==""){
+            alert("请输入书籍简介噢~")
+            return false;
+        }
+        if (document.getElementById("userAccount").getAttribute("value")==""){
+            alert("请先登录！")
+            return false;
+        }
+        else{
+            alert("成功上传"+document.forms["fileUploadForm"]["file"].value+"文件！")
+            return true;
+        }
+
     }
 
 </script>
