@@ -5,18 +5,19 @@
 <mapper namespace="com.dbtest.dao.AccountMappers">
     <select id="selectByAccount" resultMap="accountResultMap">
         select *from account
-        where account=#{account}
+        where account.account=#{account}
     </select>
     <resultMap id="accountResultMap" type="com.dbtest.entity.Account">
         <result property="account" column="account"></result>
         <result property="name" column="name"></result>
         <result property="password" column="password"></result>
+        <result property="email" column="email"></result>
         <result property="lv" column="lv"></result>
         <result property="vip" column="vip"></result>
     </resultMap>
     <insert id="insertAccount" parameterType="com.dbtest.entity.Account">
-        insert into accountdb(account,name,password,lv,vip)
-        values (#{account},#{name},#{password},#{lv},#{vip})
+        insert into account(account,name,password,email,lv,vip)
+        values (#{account},#{name},#{password},#{email},#{lv},#{vip})
     </insert>
 
 

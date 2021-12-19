@@ -55,13 +55,13 @@
 
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3 social-login" style="margin-top:0px;">
-                        	<h3>选择您的登陆身份</h3>
+                        	<h3>欢迎访问</h3>
                         	<div class="social-login-buttons">
 	                        	<button class="btn btn-link-2" onclick="selectIdentity(0)">
-                                    <i class="fa fa-child"></i> 学生身份
+                                    <i class="fa fa-child"></i> 登录
 	                        	</button>
-	                        	<button class="btn btn-link-2" onclick="selectIdentity(1)">
-	                        		<i class="fa fa-meh-o"></i> 管理员身份
+	                        	<button class="btn btn-link-2" onclick="window.location.href='http://localhost:9000/student/register'">
+	                        		<i class="fa fa-meh-o"></i> 注册
 	                        	</button>
                         	</div>
                         </div>

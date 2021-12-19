@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-@RequestMapping(value ="/Account")
+@RequestMapping(value = "/Account")
 public class AccountController {
 
     @Autowired
@@ -20,17 +21,24 @@ public class AccountController {
 
     @PostMapping("/createAccount")
     @ResponseBody
-    public boolean createAccount(@RequestBody Account account) throws Exception {//测试通过
-        account.setLv(1);account.setVip(0);
-        if(accountService.isContained(account.getAccount()))
-            return false;
-        boolean result=accountService.insertAccount(account);
-        return result;
+    public void createAccount(@RequestPart String userName, @RequestPart String password, @RequestPart String email,
+                              HttpServletResponse response) throws Exception {
+        Account account = new Account(userName, null, password, email, 1, 0);
+        if (accountService.isContained(account.getAccount())) {
+            response.sendRedirect("/student/error404?message=Account exist!");
+            return;
+        }
+        boolean result = accountService.insertAccount(account);
+        if (!result) {
+            response.sendRedirect("/student/error404?message=Server Error");
+            return;
+        }
+        response.sendRedirect("/student/index");
     }
 
     @PostMapping("/assertAccount")
     @ResponseBody
-    public boolean assertAccount(@RequestBody Account account) throws IOException {//测试通过
-        return accountService.isPass(account.getAccount(),account.getPassword());
+    public boolean assertAccount(@RequestBody Account account) throws IOException {
+        return accountService.isPass(account.getAccount(), account.getPassword());
     }
 }

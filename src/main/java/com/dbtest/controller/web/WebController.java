@@ -34,6 +34,22 @@ public class WebController {
     }
 
     /**
+     * 登录页面
+     */
+    @GetMapping(value = "/register")
+    public String register() {
+        return "register";
+    }
+
+    /**
+     * 登录页面
+     */
+    @GetMapping(value = "/error404")
+    public String error(@RequestParam String message) {
+        return "error404";
+    }
+
+    /**
      * 主页
      * @return
      */

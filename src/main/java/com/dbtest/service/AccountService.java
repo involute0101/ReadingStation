@@ -43,6 +43,7 @@ public class AccountService {
         try (SqlSession sqlSession = mybatisSqlSessionFactory.openSession()) {
             AccountMappers accountMappers = sqlSession.getMapper(AccountMappers.class);
             Account account1 = accountMappers.selectByAccount(account);
+            System.out.println("账户："+account1);
             if (account1 == null)
                 return false;
             return true;
@@ -53,7 +54,7 @@ public class AccountService {
 
         try (SqlSession sqlSession = mybatisSqlSessionFactory.openSession(true)) {//打开自动提交
             AccountMappers accountMappers = sqlSession.getMapper(AccountMappers.class);
-            accountMappers.insertAccount(a.getAccount(), a.getPassword(), a.getName(), a.getLv(), a.getVip());
+            accountMappers.insertAccount(a);
             return true;
         }
     }
