@@ -254,10 +254,11 @@
                     document.getElementById("myBooks").innerHTML = myBooksStr;
                 })
             }
+            var favouriteBook = "";
             function showData3(data) {
                 data.forEach((book)=>{
-                    myBooksStr += "<div style='margin-top: 10px;margin-left: 5px'><a href='book?bookName="+book['bookName']+"'>《"+book['bookName']+"》</a></div>";
-                    document.getElementById("myFavouriteBook").innerHTML = myBooksStr;
+                    favouriteBook += "<div style='margin-top: 10px;margin-left: 5px'><a href='book?bookName="+book['bookName']+"'>《"+book['bookName']+"》</a></div>";
+                    document.getElementById("myFavouriteBook").innerHTML = favouriteBook;
                 })
             }
         </script>
