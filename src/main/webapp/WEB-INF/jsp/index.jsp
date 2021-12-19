@@ -80,10 +80,6 @@
                             <a href="/user/login" class="span_1">登录</a>|
                             <a href="/user/register" class="span_1">注册</a>
                     </span>
-                    <span class="span_1" id="personInformation">
-                            <a href="/user/index" class="span_1">个人中心</a>
-                    </span>
-
                 </li>
                 <script>
                     var startIndex = document.cookie.indexOf("id=")
@@ -141,14 +137,8 @@
     <!-- 1-3右模块 -->
     <div class=" fr">
         <div class="main_1_r">
-            <div class="main_1_r_t">新书推荐</div>
-            <ul>
-<%--                <li th:each="book:${booksRecommend}">--%>
-<%--                    <a th:href="|./book/detail/|+${book.getId()}">--%>
-<%--                        <span th:text="${book.getBooktype()}">[类型]</span>--%>
-<%--                        <span th:text="${book.getName()}">书名</span>--%>
-<%--                    </a>--%>
-<%--                </li>--%>
+            <div class="main_1_r_t">我的收藏</div>
+            <ul id="myFavouriteBook">
             </ul>
         </div>
     </div>
@@ -159,19 +149,18 @@
         <div class=" fl main_2_l">
             <div class="main_2_l_t">站长推荐</div>
             <ul>
-                <li th:each="book:${books.get('xuanhuan')}">
-                    <a href="#" th:href="|./book/detail/|+${book.getId()}">
+                <li >
+                    <a >
                         <img th:data-original="/static/css/indexWeb/statics/images/nocover.jpg" src="/static/css/indexWeb/statics/images/nocover.jpg" alt=""></a>
                     <div class="main_2_l_r">
-                            <span>
-                                <a href="#" th:href="|./book/detail/|+${book.getId()}" th:text="${book.getName()}"></a>
-                            </span>
+                        <span style="font-size: 20px">
+                            <a >《Effective Java》</a>
+                        </span>
                         <span>
-                                <strong>作者:</strong>
-                                <a href="#" th:href="|./book/detail/|+${book.getId()}" th:text="${book.getAuthor()}"> </a>
-                            </span>
-                        <span></span>
-                        <span><a href="#" th:href="|./book/detail/|+${book.getId()}">前往阅读 >></a></span>
+                            <strong>上传者:involute</strong>
+                        </span>
+                        <div style="margin-top: 20px">这是一本学习Java的好书籍</div>
+                        <span style="margin-top: 40px;"><a href="http://localhost:9000/student/book?bookName=Effective Java">前往阅读 >></a></span>
                     </div>
                 </li>
             </ul>
@@ -226,6 +215,18 @@
                     }
                 });
                 $.ajax({
+                    url: "http://localhost:9000/Favourite/myFavourite?account="+id,
+                    type: "get",
+                    dataType: "json",
+                    success: function(data){
+                        /*这个方法里是ajax发送请求成功之后执行的代码*/
+                        showData3(data);
+                    },
+                    error: function(msg){
+                        alert("ajax连接异常："+msg);
+                    }
+                });
+                $.ajax({
                     url: "http://localhost:9000/Book/all",
                     type: "get",
                     dataType: "json",
@@ -239,10 +240,10 @@
                 });
             };
             var str = "";
-            str+="<tr> <th>书名</th> <th>上传者</th> <th>上传时间</th> </tr>";
+            str+="<tr> <th>封面</th><th>书名</th> <th>上传者</th> <th>上传时间</th> </tr>";
             function showData(data) {
                 data.forEach((book)=>{
-                    str += "<tr> <td width=\"33%\" align=\"center\">"+book['bookName']+"</td> <td width=\"33%\" align=\"center\">"+book['uploaderAccount']+"</td> <td width=\"33%\" align=\"center\">"+book['uploadTime']+"</td> </tr>";
+                    str += "<tr> <td><img th:data-original=\"/static/css/indexWeb/statics/images/bookImage.jpg\" src=\"/static/css/indexWeb/statics/images/bookImage.jpg\" alt=''></td><td width=\"33%\" align=\"center\"><a href='http://localhost:9000/student/book?bookName="+book['bookName']+"'>"+book['bookName']+"</a><td width=\"33%\" align=\"center\">"+book['uploaderAccount']+"</td> <td width=\"33%\" align=\"center\">"+book['uploadTime']+"</td> </tr>";
                     document.getElementById("Books").innerHTML = str;
                 })
             }
@@ -251,6 +252,12 @@
                 data.forEach((book)=>{
                     myBooksStr += "<div style='margin-top: 10px;margin-left: 5px'><a href='book?bookName="+book['bookName']+"'>《"+book['bookName']+"》</a></div>";
                     document.getElementById("myBooks").innerHTML = myBooksStr;
+                })
+            }
+            function showData3(data) {
+                data.forEach((book)=>{
+                    myBooksStr += "<div style='margin-top: 10px;margin-left: 5px'><a href='book?bookName="+book['bookName']+"'>《"+book['bookName']+"》</a></div>";
+                    document.getElementById("myFavouriteBook").innerHTML = myBooksStr;
                 })
             }
         </script>

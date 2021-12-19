@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dbtest.dao.FavouriteMappers">
+    <insert id="insertFavourite" parameterType="com.dbtest.entity.Favourite" useGeneratedKeys="true" keyProperty="id">
+        insert into favourite(account,bookId,bookName) VALUES (#{account},#{bookId},#{bookName})
+    </insert>
+
+    <select id="myFavourite" resultMap="ListFavourite">
+        select * from favourite where account = #{account}
+    </select>
+    <resultMap id="ListFavourite" type="com.dbtest.entity.Favourite">
+        <result property="account" column="account"></result>
+        <result property="id" column="id"></result>
+        <result property="bookId" column="bookId"></result>
+        <result property="bookName" column="bookName"></result>
+    </resultMap>
+</mapper>

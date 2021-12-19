@@ -26,15 +26,7 @@
                 <ul>
                     <li style="float:right">
                         <img src="/static/css/indexWeb/statics/images/home.png" alt="">
-                        <a href="#" onclick="toDesktop('http:\//www.rightstar.cn/','ReadingStation')"> 设为首页</a>
-                    </li>
-                    <li style="float:right">
-                        <img src="/static/css/indexWeb/statics/images/icon_star.png" alt="">
-                        <a href="#"> 加入收藏</a>
-                    </li>
-                    <li style="float:right">
-                        <img src="/static/css/indexWeb/statics/images/icon_plane.png" alt="">
-                        <a href="#"> 桌面快捷</a>
+                        <a href="/student/index" > 返回首页</a>
                     </li>
                 </ul>
             </div>
@@ -55,9 +47,6 @@
                             <a href="/user/login" class="span_1">登录</a>|
                             <a href="/user/register" class="span_1">注册</a>
                     </span>
-                    <span class="span_1" id="personInformation">
-                            <a href="/user/index" class="span_1">个人中心</a>
-                    </span>
                     <script>
                         var startIndex = document.cookie.indexOf("id=")
                         var idString;
@@ -66,7 +55,7 @@
                         }else{
                             idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
                         }
-                        var param = document.cookie.substring(idString.indexOf("="),idString.length);
+                        var param = document.cookie.substring(idString.indexOf("=")+1,idString.length);
                         document.getElementById("userName").innerText=param;
                         var loginRegister = document.getElementById("loginRegister")
                         var personInformation = document.getElementById("personInformation")
@@ -159,7 +148,7 @@
             document.getElementById("uploadAccount").innerHTML = data['uploaderAccount']
             document.getElementById("uploadDate").innerHTML = data['uploadTime']
             document.getElementById("description").innerHTML = data['description']
-            document.getElementById("startRead").innerHTML = "<a href='../../Book/PDF/"+data['bookName']+".pdf' class=\"buy_btn\">开始阅读</a>";
+            document.getElementById("startRead").innerHTML = "<a href='../../Book/PDF/"+data['bookName']+".pdf' class=\"buy_btn\">开始阅读</a><a class=\"buy_btn\" onclick='addFavourite("+data['id']+")'>加入收藏</a>";
 
             data['comments'].forEach((comment)=>{
                 commentStr+="<div class=\"comment\"><span class=\"comment-avatar\">"+
@@ -184,6 +173,34 @@
             document.getElementById("userAccount").setAttribute("value",id)
             document.getElementById("commentBookName").setAttribute("value",r[2])
             alert("评论已发布~感谢您的精彩评论")
+        }
+        function addFavourite(bookId, bookName){
+            var str = "";
+            var startIndex = document.cookie.indexOf("id=")
+            var idString;
+            if(document.cookie.indexOf(";")==-1){
+                idString = document.cookie.substring(startIndex,document.cookie.length)
+            }else{
+                idString = document.cookie.substring(startIndex,document.cookie.indexOf(";"))
+            }
+            var id = document.cookie.substring(idString.indexOf("=")+1,idString.length);
+            console.log(id)
+            if(id == ""){
+                alert("请先登录")
+                return;
+            }else{
+                $.ajax({
+                    url: "http://localhost:9000/Favourite/add?account="+id+"&bookId="+bookId+"&bookName="+r[2],
+                    type: "get",
+                    dataType: "json",
+                    success: function(data){
+                        alert("收藏成功！");
+                    },
+                    error: function(msg){
+                        alert("收藏成功！");
+                    }
+                });
+            }
         }
     </script>
 </div>

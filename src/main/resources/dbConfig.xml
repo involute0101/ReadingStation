@@ -23,6 +23,7 @@
         <mapper resource="Mappers/accountMapper.xml"/>
         <mapper resource="Mappers/CommentMapper.xml"/>
         <mapper resource="Mappers/bookMapper.xml"/>
+        <mapper resource="Mappers/FavouriteMapper.xml"/>
     </mappers>
     <!-- 打开延迟加载的开关 -->
 
