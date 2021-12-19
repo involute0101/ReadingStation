@@ -163,6 +163,36 @@
                         <span style="margin-top: 40px;"><a href="http://localhost:9000/student/book?bookName=Effective Java">前往阅读 >></a></span>
                     </div>
                 </li>
+
+                <li >
+                    <a >
+                        <img th:data-original="/static/css/indexWeb/statics/images/nocover.jpg" src="/static/css/indexWeb/statics/images/nocover.jpg" alt=""></a>
+                    <div class="main_2_l_r">
+                        <span style="font-size: 20px">
+                            <a >《deep learning》</a>
+                        </span>
+                        <span>
+                            <strong>上传者:AI工程师</strong>
+                        </span>
+                        <div style="margin-top: 20px">入门啦!值得一看！</div>
+                        <span style="margin-top: 40px;"><a href="http://localhost:9000/student/book?bookName=deep learning">前往阅读 >></a></span>
+                    </div>
+                </li>
+
+                <li >
+                    <a >
+                        <img th:data-original="/static/css/indexWeb/statics/images/nocover.jpg" src="/static/css/indexWeb/statics/images/nocover.jpg" alt=""></a>
+                    <div class="main_2_l_r">
+                        <span style="font-size: 20px">
+                            <a >《Algorithms》</a>
+                        </span>
+                        <span>
+                            <strong>上传者:AI工程师</strong>
+                        </span>
+                        <div style="margin-top: 20px">来经历算法的磨难吧！</div>
+                        <span style="margin-top: 40px;"><a href="http://localhost:9000/student/book?bookName=Algorithms">前往阅读 >></a></span>
+                    </div>
+                </li>
             </ul>
         </div>
 
